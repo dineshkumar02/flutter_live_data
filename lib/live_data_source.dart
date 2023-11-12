@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'live_data.dart';
 
+@deprecated
 class LiveDataSource<T> extends LiveData<T> {
   DataSourceInterface? _dataSourceInterface;
 
   LiveDataSource(
     super.initValue, {
+    super.name,
+    super.verifyDataChange,
+    super.streamController,
+    super.owner,
+    super.logger,
     DataSourceInterface? dataSourceInterface,
   }) {
     _init();
@@ -36,6 +42,7 @@ class LiveDataSource<T> extends LiveData<T> {
   }
 }
 
+@deprecated
 abstract class DataSourceInterface<T> {
   Future<void> onValueUpdated(T value, bool hasChange);
 
@@ -52,6 +59,7 @@ DataSourceInterface<T> createDataSourceInterface<T>({
   );
 }
 
+@deprecated
 class _DataSourceInterface<T> extends DataSourceInterface<T> {
   Future<T> Function()? loadValueAction;
   Future<void> Function(T value, bool hasChange)? onValueUpdatedAction;
